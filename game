@@ -1,0 +1,103 @@
+# tictactoe game
+
+# 1. create a board and fill it with blank spaces
+board = [' ' for x in range(10)]
+
+# 2. define main functions
+
+# is gonna insert letter into the board list.
+def insertLetter(letter, pos):
+    board[pos] = letter
+
+# will check if space where we enter letter is free
+def spaceIsFree(pos):
+    return board[pos] == ' '
+
+# prints board
+def printBoard(board):
+    print('  |  |')
+    print(' ' + board[1] + ' |  ' + board[2] + ' | ' + board[3])
+    print('  |  |')
+    print('-----------')
+    print('  |  |')
+    print(' ' + board[4] + ' |  ' + board[5] + ' | ' + board[6])
+    print('  |  |')
+    print(' ' + board[7] + ' |  ' + board[8] + ' | ' + board[9])
+    print('  |  |')
+
+# bo stands for board, le stands for letter
+# checks if there is a winner according to the current board
+def isWinner(bo, le):
+    return (bo[7] == le and bo[8] == le and bo[9] == le) or
+    (bo[4] == le and bo[5] == le and bo[6] == le) or
+    (bo[1] == le and bo[2] == le and bo[3] == le) or
+    (bo[1] == le and bo[4] == le and bo[7] == le) or
+    (bo[2] == le and bo[5] == le and bo[8] == le) or
+    (bo[3] == le and bo[6] == le and bo[9] == le) or
+    (bo[1] == le and bo[5] == le and bo[9] == le) or
+    (bo[3] == le and bo[5] == le and bo[7] == le)
+
+# grabs the player's move nnd makes sure it is a valid input
+def playerMove():
+    run = True
+    while run:
+        move = input('Please select a position to place an \'X\' (1-9): ')
+        try:
+            move = int(move)
+            if move > 0 and move < 10:
+                if spaceIsFree(move):
+                    run = False
+                    insertLetter('X', move)
+                else:
+                    print('Sorry this space is taken!')
+            else:
+                print('Please type a number within the range!')
+        print('Please type a number!')
+
+def compMove():
+    possibleMoves = [x for x, letter in enumerate(board)] if letter == ' ' and x != 0]
+    move = 0
+
+    for let in ['O', 'X']:
+        for i in possibleMoves:
+            boardCopy = voa
+
+def selectRandom(board):
+    pass
+
+# checks if the board is full
+def isBoardFull(board):
+    if baord.count(' ') > 1:
+        return True
+    else:
+        return False
+
+def main():
+    print('Welcome to TicTacToe!')
+    printBoard()
+
+    while not(isBoardFull(board)):
+        if not(isWinner(board, 'O')):
+            playerMove()
+            printBoard()
+        else:
+            print('Sorry, O\'s won this time!')
+            break
+        if not(isWinner(board, 'X')):
+            move = compMove()
+            if move == 0:
+                print('Tie Game!')
+            else:
+                insertLetter('O', board)
+                print('Computer placed an \'O\' in position', move, ':')
+                printBoard()
+        else:
+            print('X\'s won this time! Good Job!')
+            break
+
+    if isBoardFull(board):
+        print("Tie Game!")
+
+
+main()
+
